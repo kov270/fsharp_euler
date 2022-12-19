@@ -1,3 +1,5 @@
+module Euler28
+
 // Рекурсия хвостовая
 let rec f i  a = 
     if i > 1001 then

@@ -1,3 +1,5 @@
+module Euler28
+
 // while
 let f = 
     let mutable ans = 1
