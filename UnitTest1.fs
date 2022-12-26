@@ -13,12 +13,12 @@ let result28 = 669171001
 
 [<Test>]
 let Test1 () =
-    let f: uint64 = rec31_c input3D
+    let f: uint64 = rec31c input3D
     assert (f = result3)
 
 [<Test>]
 let Test2 () =
-    let factRes = resultFactors_c input3D
+    let factRes = resultFactorsc input3D
     assert (factRes = result3)
 
 [<Test>]
@@ -34,7 +34,7 @@ let TestTailRec () =
 
 [<Test>]
 let TestModuleRel () =
-    let res1 = module28_1
+    let res1 = module281
     assert (res1 = result28)
-    let res2 = module28_2
+    let res2 = module282
     assert (res2 = result28)

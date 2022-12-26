@@ -6,7 +6,7 @@ let rec rec31 (n: uint64) (d: uint64) : uint64 =
     elif n % d = uint64 0 then rec31 (n / d) d
     else rec31 n (d + uint64 2)
 
-let rec31_c (n: uint64) : uint64 =
+let rec31c (n: uint64) : uint64 =
     rec31 n 3UL
 
 let rec private f32 (n: uint64) x a =
@@ -29,7 +29,7 @@ let resultFactors d n =
     Seq.fold (fun acc d -> if acc % d = uint64 0 then acc / d else acc) n (factors d n)
 
 
-let resultFactors_c n = 
+let resultFactorsc n = 
     resultFactors 3UL n
 
 
@@ -46,12 +46,13 @@ let rec tailRec28 i a =
 let module28 lt =
     lt
     |> Seq.map (fun n -> 4 * (n - 2) * (n - 2) + 10 * (n - 1))
-    |> Seq.fold ( + ) 0
+    // like Seq.fold ( + ) 0 but linter
+    |> Seq.sum
     |> fun sum -> sum + 1
 
 
-let module28_1 =
+let module281 =
     module28 [ for a in 1 .. 500 do yield (a * 2+1) ]
 
-let module28_2 =
+let module282 =
     module28 ([ 1 .. 500] |> Seq.map (fun n -> n* 2+1))

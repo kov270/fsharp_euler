@@ -4,7 +4,7 @@ open Functions
 
 [<EntryPoint>]
 let main argv =
-    let f: uint64 = rec31_c (uint64 "600851475143")
+    let f: uint64 = rec31c (uint64 "600851475143")
     printfn "%A" f
 
     let factors = factorise (uint64 "600851475143")
@@ -18,11 +18,11 @@ let main argv =
     printfn "%A" tail28
 
     printfn "Map-module реализация 28"
-    let tail28 = module28_1
+    let tail28 = module281
     printfn "%A" tail28
 
     printfn "map генерация последовательности"
-    let tail282 = module28_2
+    let tail282 = module282
     printfn "%A" tail282
 
     0
