@@ -45,9 +45,8 @@ let rec tailRec28 i a =
 
 let module28 lt =
     lt
-    |> Seq.map (fun n -> 4 * (n - 2) * (n - 2) + 10 * (n - 1))
-    // like Seq.fold ( + ) 0 but linter
-    |> Seq.sum
+    |> Seq.sumBy (fun n -> 4 * (n - 2) * (n - 2) + 10 * (n - 1))
+    // like Seq.map Seq.fold ( + ) 0 but linter
     |> fun sum -> sum + 1
 
 
