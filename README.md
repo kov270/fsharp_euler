@@ -27,18 +27,25 @@ print(n)
 практический полный аналог, но место цикла использветься хвостовая рекурсия
 ```f#
 let rec rec31 (n: uint64) (d: uint64) : uint64 =
-    if d * d >= n then n
-    elif n % d = uint64 0 then rec31 (n / d) d
-    else rec31 n (d + uint64 2)
+    match d * d with
+    | n' when n' >= n -> n
+    | _ -> 
+        match n % d with
+        | 0UL -> rec31 (n / d) d
+        | _ -> rec31 n (d + uint64 2)
 
 ```
 #### 2) рекурсия
 чтоб оправдать необходимость рекурсии факторизуем число и берём наибольшее
 ```f#
 let rec private f32 (n: uint64) x a =
-    if x = n then x :: a
-    elif n % x = uint64 0 then f32 (n / x) x (x :: a)
-    else f32 n (x + uint64 1) a
+    match x with
+    | n' when n' = n -> x :: a
+    | _ -> 
+        match n % x with
+        | 0UL -> f32 (n / x) x (x :: a)
+        | _ -> f32 n (x + uint64 1) a
+
 
 let factorise (n: uint64) = f32 n (uint64 2) []
 
@@ -49,10 +56,14 @@ let factorise (n: uint64) = f32 n (uint64 2) []
 let private factors d n =
     Seq.unfold
         (fun (d, n) ->
-            if d * d > n then None
-            else if n % d = uint64 0 then Some(d, (d, n / d))
-            else Some(d, (d + uint64 2, n)))
+            match d * d > n with
+            | true -> None
+            | false -> 
+                match n % d with
+                | 0UL -> Some(d, (d, n / d))
+                | _ -> Some(d, (d + uint64 2, n)))
         (d, n)
+
 
 let resultFactors d n =
     Seq.fold (fun acc d -> if acc % d = uint64 0 then acc / d else acc) n (factors d n)
@@ -96,11 +107,10 @@ print(ans)
 понимаем, что в углаз хвадрата степени его разера, и просто суммируем
 ```f#
 let rec tailRec28 i a =
-    if i > 1001 then
-        a
-    else
-        // sum i^2, i^2-i+1, i^2-2i+2, i^2-3i+3
-        tailRec28 (i + 2) (a + i * i * 4 - 6 * i + 6)
+    match i > 1001 with
+    | true -> a
+    // sum i^2, i^2-i+1, i^2-2i+2, i^2-3i+3
+    | _ -> tailRec28 (i + 2) (a + i * i * 4 - 6 * i + 6)
 
 ```
 
